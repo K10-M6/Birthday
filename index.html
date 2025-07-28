@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Feliz Cumpleaños!</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Fuente de Google: Fredoka One (alegre y redondeada) -->
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+
+<!-- Fuente de Google: Pacifico (cursiva bonita) -->
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+<!-- Fuente de Google: Chewy (divertida) -->
+<link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul-oscuro: #0a192f;
+            --morado: #9c27b0;
+            --morado-claro: #ba68c8;
+            --texto-claro: #f8f9fa;
+        }
+        
+        body {
+            background-color: var(--azul-oscuro);
+            color: var(--texto-claro);
+            font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', cursive, sans-serif;
+            padding-bottom: 50px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--azul-oscuro) 0%, var(--morado) 100%);
+            padding: 20px 0;
+            border-bottom: 3px solid var(--morado-claro);
+            text-align: center;
+        }
+        
+        .titulo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            font-family: 'Pacifico', cursive;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .subtitulo {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .seccion {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid var(--morado-claro);
+        }
+        
+        .imagen-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .imagen-container img {
+            max-width: 100%;
+            border-radius: 10px;
+            border: none;
+        }
+        
+        .carta-icono {
+            font-size: 2rem;
+            color: var(--morado-claro);
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 10px;
+        }
+        
+        .carta-icono:hover {
+            transform: scale(1.2);
+            color: white;
+        }
+        
+        .mensaje-container {
+            display: none;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 15px;
+            border: 1px dashed var(--morado-claro);
+        }
+        
+        .decoracion-perro {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            opacity: 0.7;
+            z-index: -1;
+        }
+        
+        .perro1 {
+            bottom: 20px;
+            left: 10px;
+        }
+        
+        .perro2 {
+            top: 100px;
+            right: 10px;
+        }
+        
+        .galeria {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .galeria img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 2px solid var(--morado-claro);
+            transition: transform 0.3s;
+        }
+        
+        .galeria img:hover {
+            transform: scale(1.1);
+        }
+        
+        .btn-morado {
+            background-color: var(--morado);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+            margin: 10px 5px;
+        }
+        
+        .btn-morado:hover {
+            background-color: var(--morado-claro);
+            color: white;
+        }
+        .imagen-carta {
+            background-color: rgba(156, 39, 176, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+            border-left: 3px solid var(--morado-claro);
+            margin-top: 15px;
+        }
+
+        .imagen-carta img {
+            max-height: 200px;
+            width: auto;
+            margin: 0 auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1 class="titulo">¡Feliz Cumpleaños!</h1>
+        <p class="subtitulo">Un día especial para alguien increíble</p>
+    </div>
+    
+    <div class="container">
+        <!-- Sección de bienvenida -->
+        <div class="seccion text-center">
+            <h2>¡Hola Nathalia!</h2>
+            <p>Hoy es un día muy especial 🎉</p>
+            
+            <div class="imagen-container">
+                <!-- Puedes reemplazar esta imagen con una tuya -->
+                <img src="images2.png" class="img-fluid">
+            </div>
+        </div>
+        
+        <!-- Sección de mensajes -->
+        <div class="seccion text-center">
+            <h3>Tus mensajes especiales</h3>
+            <p>Haz clic en las cartas para leer los mensajes:</p>
+            
+            <div class="text-center">
+            </div>
+                <img src="Maki-გული.gif" 
+                    class="carta-icono" 
+                    onclick="mostrarMensaje('mensaje1', '¡Feliz Cumpleaños!')"
+                    style="width: 50px; height: 50px;">
+                    
+                <img src="Roi-kiss-inlove.gif" 
+                    class="carta-icono" 
+                    onclick="mostrarMensaje('mensaje2', 'De parte de todos')"
+                    style="width: 50px; height: 50px;">
+                    
+                <img src="Moltres-xing.gif" 
+                    class="carta-icono" 
+                    onclick="mostrarMensaje('mensaje3', 'Que lo pases genial')"
+                    style="width: 50px; height: 50px;">
+
+                <img src="Mirai-ball-z-future-trunks.gif" 
+                    class="carta-icono" 
+                    onclick="mostrarMensaje('mensaje4', 'Que lo pases genial')"
+                    style="width: 50px; height: 50px;">
+
+                <img src="Gogeta-heart-running.gif" 
+                    class="carta-icono" 
+                    onclick="mostrarMensaje('mensaje5', 'Que lo pases genial')"
+                    style="width: 50px; height: 50px;">
+
+                <img src="Asly-baby-chicken.gif" 
+                    class="carta-icono" 
+                    onclick="mostrarMensaje('mensaje6', 'Que lo pases genial')"
+                    style="width: 50px; height: 50px;">
+                <img src="Youmu-popcorn.webp" 
+                    class="carta-icono" 
+                    onclick="mostrarMensaje('mensaje7', 'Que lo pases genial')"
+                    style="width: 50px; height: 50px;">
+                
+                <img src="Dulce-man-chainsaw-man-opening.gif" 
+                    class="carta-icono" 
+                    onclick="mostrarMensaje('mensaje8', 'Que lo pases genial')"
+                    style="width: 50px; height: 50px;">
+
+                <img src="Isa-furina-de-fontaine.gif" 
+                    class="carta-icono" 
+                    onclick="mostrarMensaje('mensaje9', 'Que lo pases genial')"
+                    style="width: 50px; height: 50px;">
+
+                <img src="yuno-grinberryall.gif" 
+                    class="carta-icono" 
+                    onclick="mostrarMensaje('mensaje10', 'Que lo pases genial')"
+                    style="width: 50px; height: 50px;">
+                
+                <img src="Kyouma-anime-boy (1).gif" 
+                    class="carta-icono" 
+                    onclick="mostrarMensaje('mensaje11', 'Que lo pases genial')"
+                    style="width: 50px; height: 50px;">
+            </div>
+                
+                <!-- Contenedores de mensajes (inicialmente ocultos) -->
+                <div id="mensaje1" class="mensaje-container text-center">
+                    <h4>¡Feliz Cumpleaños!</h4>
+                    <p>Hola ,hola .</p>
+                        <p>Hoy el mundo se entorna en ti dejando ver otras de sus maravillas y mejores bellezas . Es un día especial, solo porque tú lo haces especial. Paso por aquí dejando unas pequeñas palabras que no se comparan con un gran regaló, pero son con mucho cariño, realmente me siento feliz de pertenecer a esta familia especialmente de saber que eres mi tía me alegra mucho poder celebrar tu cumpleaños.  Esta familia hace que estos días sean especiales y llegó tu turno , el turno de desearte un feliz cumpleaños, porque es el día en que las estrellas se alinean para celebrar un día como aquel hace tantos años en que naciste , dónde la tierra sonrió en tu llegada . Quiero empezar deseandote toda la salud , que tus días sean alegres y enérgicos donde la tristeza solo un concepto y no una realidad , deseandote que aquellos anhelos que llevas en tu corazón sean convicción y nunca te rindas en conseguirlos qué nunca sea algo “ suficiente “ sino que siempre obtengas más de lo que deseas .En tus estudios o si trabajas , con saber que estás aquí ya te hace muy especial sobre todo con el cariño que me has mostrado ,seguir viviendo con la racha que lleva tanto tiempo .</p>
+                        <p>♡. Te quiero mucho , me agrada mucho hablar contigo aunque no sea mucho , me gusta ya sea mandar videos y saber que estas allí.</p>
+                        <p>Para terminar esta felicitación te deseo un maravilloso día lleno de felicitaciones, amor , muchos regalos y sobre todo mucho pastel , disfruta junto a tus seres queridos, pásala super y FELIZ CUMPLEAÑOS</p>
+                        <p>Con cariño :Maki sobrina</p>
+
+                        <p>Para : Mi tía favorita ❤</p>                      
+                </div>
+                
+                <div id="mensaje2" class="mensaje-container">
+                    <p>Holap sayusin, siy frai el mapache, espero estes bien, y bueno me contaron que esta cerca tu cumpleaños Jsjs y si ya lo estás festejando quiero decirte que muchas felicidades y espero la pases bien, y bueno quiero que sepas que eres una gran amiga y que vales mucho más que el oro, es más tu valor es incalculable, de verdad te aprecio mucho sayu tkm</p>
+                    <div class="imagen-carta mt-3">
+                        <img src="roi.jpeg" alt="Mensaje visual" class="img-fluid rounded">
+                        <p class="text-center mt-1"><small>Rei Peluche</small></p>
+                    </div>
+                </div>
+                
+                <div id="mensaje3" class="mensaje-container text-center">
+                    <p>♪· Nathalia, Tú amistad fue lo mejor que me pasó en estos años, fuiste la luz de mis ojos cuando me sumergí en una oscuridad y no veía con claridad, agradezco que seas alguien especial para mí, así como yo lo soy para tí, te deseo un hermoso cumpleaños en este día.
+                    </p>
+                    <p>ATT: Moltres</p>
+
+                </div>
+                <div id="mensaje4" class="mensaje-container text-center">
+
+                    <p>¿Sayu cumple años? Bueno, la verdad es que es conmovedor un recordatorio más de pasar otro año junto a una persona tan excepcional como lo es Sayu.</p>  
+
+                    <p>No te puedo decir que somos los mejores amigos o que tenemos la mejor relación, pero lo poco que he hablado con ella me ha bastado para saber la buena persona que es. Simplemente me da felicidad saber que estás conmigo, estás con nosotros, estás ahí.</p>  
+
+                    <p>Pues nada, no me caben palabras para describir lo feliz que me siento de haber conocido a alguien que tiene el equilibrio de tener personalidad y caer bien; de haber conocido a una persona que me guiaría con la idea loca de adoptar una hija la cual terminó siendo nuestra Estrellita; de haberte quedado ahí cuando la gente necesitó ayuda o respaldo; es un enorme GRACIAS por todo lo que eres y significas.</p>  
+
+                    <p>Te deseo lo mejor y te daré todo lo que me permitas ofrecerte. Tienes incondicionalmente mi apoyo, mi amistad y mi compañía. Dios bendiga tu vida con todo lo que te propongas y que te guarde en todo que tengas de vida.</p>  
+
+                    <p>TQM. ❤</p>
+                    <p class="text-center mt-1"><small>Mirai</small></p>
+                </div>
+
+                <div id="mensaje5" class="mensaje-container text-center">
+
+                    <p>Hola pequeña Sayu</p>
+
+                    <p>No soy muy expresivo, no es sorpresa para nadie pero estas palabras te las dedico con mucho cariño</p>
+
+                    <p>Hoy es un día bastante especial, es el cumpleaños de una persona tan maravillosa como tu, no es algo que puedas festejar todos los días</p>
+                    <p>Espero hoy en tu día puedas disfrutar de alegrías con las personas que más aprecias</p>
+                    <p>Estoy feliz de que seas mi amiga, eres un gran apoyo para mi, me alegro de poder compartir este dia contigo.</p>
+                    <p>Bueno no tengo mas palabras, solo deseos</p>
+                    <p>Que tengas días llenos de alegría y salud, que tus problemas sean de lo más pequeños y pasajeros, y que te vaya genial en tus estudios y en todo lo que te propongas</p>
+                            
+                    <p>Ahora si, sin más palabras, que tengas un muy feliz y maravilloso cumpleaños 🎂🎉</p>
+                    <p>Te quiero mucho 💖</p>
+                    <p class="text-center mt-1"><small>Gogeta</small></p>
+                </div>
+
+                <div id="mensaje6" class="mensaje-container text-center">
+                    <p>Es increíble como pasa el tiempo, ya es el segundo año que paso contigo en tu cumpleaños, ese hecho me llena de felicidad, agradezco haberte conocido, haber convivido, ser parte de tu círculo de amigos, sinceramente agradezco conocer a alguien tan especial como lo eres tú, puede que no tenga un regalo extravagante, es solo una pequeña dedicatoria hacia la persona que se merece el mundo entero.. La galaxia si es posible, una vez más, gracias por todo sayu, fuiste, eres y serás la persona más especial en mi vida; feliz súper cumpleaños 🐥🎉🎉🎉 te adoro demasiado</p>
+                    <P>Att: asly</P>
+                </div>
+
+                <div id="mensaje7" class="mensaje-container text-center">
+                    <p>Feliz cumpleañooooos. 🦔✨</p>
+                    <p>es más que un día para celebrar tu nacimiento. Es una oportunidad para reconocer la persona en la que te has convertido, el camino que has recorrido, y todo lo que has superado para estar donde estás.</p>
+
+
+                    <p>No todos los días se cumple un año más de vida, y por eso vale la pena detenerse un momento y agradecer por lo vivido, lo aprendido y lo que está por venir. Deseo de corazón que este nuevo ciclo te traiga paz interior, claridad en tus decisiones, y la fuerza para seguir avanzando hacia lo que deseas y mereces.</p>
+
+                    <p>Así como alguien que me ha asistido, me ha aconsejado y sobre todo también me guío en ciertas etapas críticas en mi vida y agradezco mucho eso por haber estado ahí cuando lo necesite, yo valoro mucho lo que eres y todo lo que representas para mi, créeme que me gusta pasar tiempo contigo aunque sea poca las veces y en este día tan importante, solo puedo desearte lo mejor, con honestidad y respeto.</p>
+
+                    <p>Feliz cumpleaños madre mía, te quiere tu hija: Youmu 🎂</p>
+
+                    <div class="imagen-carta mt-3">
+                        <img src="Youmu.png" alt="Mensaje visual" class="img-fluid rounded">
+                    </div>
+                </div>
+
+                <div id="mensaje8" class="mensaje-container text-center">
+                                        <p>Sayu. 🎂🐇 </p>
+                    <P>Cada vez es más difícil recordar cuando no nos hablábamos. Creo que muchas cosas mejoraron cuando terminé mi anterior relación y una de ellas fue la comunicación que nació entre nosotras, formamos una buena amistad que al día de hoy sigue siendo especial y te agradezco mucho por todo eso.</P>
+                    <p>En estos meses hemos estado más ocupadas que antes y no hablamos tanto, estudiar me estresa mucho así que me he vuelto menos sociable. Espero que no pienses que no me gusta hablar contigo o algo así, son las cosas que a veces se juntan las que me vuelven distante pero yo te quiero mucho y te cuidaré de cualquier peligro que aceche</p>
+                    <p>Deseo que tengas un feliz cumpleaños, sabes que el norte es nuestra familia y cuando sea el momento te convertirás en la mejor reina de todas pero para eso todavía debemos esperar un poco y darle vida al grupo que gobernarás. Me hace feliz que las cosas sean así, siempre confiaré en ti, eres mi amiga y mi hermana pequeña. Muchos abrazos para ti, mantengamos viva la racha. 🐇🔥</p>
+                    <p class="text-center mt-1"><small>Dulce</small></p>
+                </div>
+
+                <div id="mensaje9" class="mensaje-container text-center">
+                    <p>Hola Nino, hace tiempo que no hablamos. No sé mucho de ti, aveces he creído que eres menor y también hay días que pareces mayor que yo. Por eso nuestra relación es difícil de entender para mí, no por eso es incomodo hablarte. De hecho, aunque no sepa si eres mi madre o mi hija, has podido ganarte mi cariño y las noches que jugábamos juntas son un bonito recuerdo para mí porque siempre estabas despierta de madrugada, cuando todos dormían. Eso me agradaba mucho. Me ayudó a sentir que éramos cercanas a pesar de que me ausento por semanas o meses. Pensándolo bien, creo que te veo como a una hermana ¿es malo que seamos hermanas? Puedes darme tu respuesta cuando nos reencontremos. </p>
+                    <p>Lo que importa ahora es compartir contigo algunos de mis pensamientos y mis mejores deseos para ti, que disfrutes mucho de tu día especial y de paso, decirte que quisiera que nuestra amistad siga creciendo un poco más, así como nuestra rivalidad en los juegos. Te deseo felicidad y por supuesto también salud, aunque eres pequeña (¿verdad?) y no dudo que estarás bien por muchísimos años más y así debe ser porque la salud es importante. Te quiero mucho, sé muy feliz siempre, no sólo hoy, todos los días dedica tus esfuerzos a las cosas que te animan y te hacen sentir bien. Tal vez no soy de las primeras personas en las que piensas cuando necesitas algo, pero si me necesitas, estaré contigo, en especial en las madrugadas fufufu. ¡Felicidades Nino, Sayu!</p>
+                    <div class="imagen-carta mt-3">
+                        <img src="Celeste.jpeg" alt="Mensaje visual" class="img-fluid rounded">
+                    </div>
+                    <p class="text-center mt-1"><small>Voûte céleste.一</small></p>
+                </div>
+
+                <div id="mensaje10" class="mensaje-container text-center">
+
+                </div>
+
+                <div id="mensaje11" class="mensaje-container text-center">
+                    <p></p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Sección de galería -->
+        <div class="seccion text-center">
+            <h3>Nuestros momentos</h3>
+            <p>Algunos recuerdos especiales contigo:</p>
+            
+            <div class="galeria">
+                <!-- Imágenes de ejemplo - puedes reemplazarlas -->
+                <img src="Remind-D.jpeg" alt="Foto 1">
+                <img src="Remind-a.jpg" alt="Foto 2">
+                <img src="RemindYoumu.jpeg" alt="Foto 3">
+                <img src="https://via.placeholder.com/100.png?text=Foto+4" alt="Foto 4">
+                <img src="https://via.placeholder.com/100.png?text=Foto+5" alt="Foto 5">
+                <img src="https://via.placeholder.com/100.png?text=Foto+6" alt="Foto 6">
+            </div>
+        </div>
+        
+        <!-- Sección final -->
+        <div class="seccion text-center">
+            <h3>¡Que tengas un día maravilloso!</h3>
+            <p>Esperamos que este nuevo año de vida esté lleno de alegría, amor y muchas bendiciones.</p>
+            
+            <div class="imagen-container">
+                <!-- Imagen de ejemplo - puedes reemplazarla con un chibi o perro -->
+                <img src="chibi-anime-boy.gif" alt="Imagen tierna" class="img-fluid">
+            </div>
+            
+            <button class="btn-morado" onclick="animacionConfeti()">
+                <i class="fas fa-birthday-cake"></i> ¡Celebremos!
+            </button>
+        </div>
+    </div>
+    
+    <!-- Decoraciones de perros (puedes reemplazar con tus imágenes) -->
+    <img src="FOTO1.png" class="decoracion-perro perro1" alt="Perro decorativo">
+    <img src="love-hit.gif" class="decoracion-perro perro2" alt="Perro decorativo">
+    
+    <!-- Font Awesome para los iconos -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Script personalizado -->
+    <script>
+        // Función para mostrar/ocultar mensajes
+        function mostrarMensaje(id, titulo) {
+            // Oculta todos los mensajes primero
+            document.querySelectorAll('.mensaje-container').forEach(function(el) {
+                el.style.display = 'none';
+            });
+            
+            // Muestra el mensaje seleccionado
+            const mensaje = document.getElementById(id);
+            mensaje.style.display = 'block';
+            
+            // Opcional: desplazarse suavemente al mensaje
+            mensaje.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        
+        // Función para animación de confeti (simplificada)
+        function animacionConfeti() {
+            alert("¡Feliz Cumpleaños. Te queremos demasiado, gracias por estar en nuestras vidas!");
+            // En una versión más avanzada podrías agregar una librería de confeti real
+        }
+        
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', function() {
+            // Puedes agregar más inicializaciones aquí si es necesario
+        });
+    </script>
+</body>
+</html>
