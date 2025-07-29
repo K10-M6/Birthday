@@ -6,13 +6,13 @@
     <title>¡Feliz Cumpleaños!</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Fuente de Google: Fredoka One (alegre y redondeada) -->
-<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
 
-<!-- Fuente de Google: Pacifico (cursiva bonita) -->
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <!-- Fuente de Google: Pacifico (cursiva bonita) -->
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 
-<!-- Fuente de Google: Chewy (divertida) -->
-<link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
+    <!-- Fuente de Google: Chewy (divertida) -->
+    <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
     <style>
         :root {
             --azul-oscuro: #0a192f;
@@ -106,27 +106,112 @@
             right: 10px;
         }
         
+        
+        /* Galería expandible */
         .galeria {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 10px;
+            gap: 15px;
             margin: 20px 0;
         }
-        
+
         .galeria img {
             width: 100px;
             height: 100px;
             object-fit: cover;
             border-radius: 10px;
             border: 2px solid var(--morado-claro);
-            transition: transform 0.3s;
+            transition: all 0.3s;
+            cursor: pointer;
         }
-        
+
         .galeria img:hover {
             transform: scale(1.1);
         }
-        
+
+        /* Modal para imagen expandida */
+        .modal-galeria {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(10, 25, 47, 0.9);
+            overflow: auto;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-contenido {
+            background-color: var(--azul-oscuro);
+            margin: 5% auto;
+            padding: 20px;
+            border-radius: 15px;
+            max-width: 90%;
+            max-height: 90vh;
+            border: 3px solid var(--morado);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .cerrar-modal {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            color: var(--morado-claro);
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .imagen-expandida {
+            max-width: 100%;
+            max-height: 60vh;
+            object-fit: contain;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .texto-imagen {
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-family: 'Pacifico', cursive;
+            font-size: 1.1rem;
+            overflow-y:auto;
+            max-height: 30vh;
+            word-wrap: break-word;
+        }
+
+        .texto-imagen::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .texto-imagen::-webkit-scrollbar-track {
+            background: rgba(156, 39, 176, 0.1);
+            border-radius: 10px;
+        }
+
+        .texto-imagen::-webkit-scrollbar-thumb {
+            background: var(--morado-claro);
+            border-radius: 10px;
+        }
+
+        .texto-imagen::-webkit-scrollbar-thumb:hover {
+            background: var(--morado);
+        }
+
         .btn-morado {
             background-color: var(--morado);
             border: none;
@@ -155,7 +240,10 @@
             margin: 0 auto;
             display: block;
         }
+        
+        
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
     <div class="header">
@@ -170,7 +258,6 @@
             <p>Hoy es un día muy especial 🎉</p>
             
             <div class="imagen-container">
-                <!-- Puedes reemplazar esta imagen con una tuya -->
                 <img src="images2.png" class="img-fluid">
             </div>
         </div>
@@ -231,22 +318,27 @@
                     onclick="mostrarMensaje('mensaje10', 'Que lo pases genial')"
                     style="width: 50px; height: 50px;">
                 
-                <img src="Kyouma-anime-boy (1).gif" 
+                <img src="Nickmeme.gif" 
                     class="carta-icono" 
                     onclick="mostrarMensaje('mensaje11', 'Que lo pases genial')"
                     style="width: 50px; height: 50px;">
+                <img src="Kyouma-anime-boy (1).gif" 
+                    class="carta-icono" 
+                    onclick="mostrarMensaje('mensaje12', 'Que lo pases genial')"
+                    style="width: 50px; height: 50px;">
+
             </div>
                 
-                <!-- Contenedores de mensajes (inicialmente ocultos) -->
+                <!-- Contenedores de mensajes -->
                 <div id="mensaje1" class="mensaje-container text-center">
                     <h4>¡Feliz Cumpleaños!</h4>
                     <p>Hola ,hola .</p>
                         <p>Hoy el mundo se entorna en ti dejando ver otras de sus maravillas y mejores bellezas . Es un día especial, solo porque tú lo haces especial. Paso por aquí dejando unas pequeñas palabras que no se comparan con un gran regaló, pero son con mucho cariño, realmente me siento feliz de pertenecer a esta familia especialmente de saber que eres mi tía me alegra mucho poder celebrar tu cumpleaños.  Esta familia hace que estos días sean especiales y llegó tu turno , el turno de desearte un feliz cumpleaños, porque es el día en que las estrellas se alinean para celebrar un día como aquel hace tantos años en que naciste , dónde la tierra sonrió en tu llegada . Quiero empezar deseandote toda la salud , que tus días sean alegres y enérgicos donde la tristeza solo un concepto y no una realidad , deseandote que aquellos anhelos que llevas en tu corazón sean convicción y nunca te rindas en conseguirlos qué nunca sea algo “ suficiente “ sino que siempre obtengas más de lo que deseas .En tus estudios o si trabajas , con saber que estás aquí ya te hace muy especial sobre todo con el cariño que me has mostrado ,seguir viviendo con la racha que lleva tanto tiempo .</p>
                         <p>♡. Te quiero mucho , me agrada mucho hablar contigo aunque no sea mucho , me gusta ya sea mandar videos y saber que estas allí.</p>
                         <p>Para terminar esta felicitación te deseo un maravilloso día lleno de felicitaciones, amor , muchos regalos y sobre todo mucho pastel , disfruta junto a tus seres queridos, pásala super y FELIZ CUMPLEAÑOS</p>
-                        <p>Con cariño :Maki sobrina</p>
+                        <p class="text-center mt-1"><small> cariño :Maki sobrina</small></p>
 
-                        <p>Para : Mi tía favorita ❤</p>                      
+                        <p class="text-center mt-1"><small>Para : Mi tía favorita ❤</small></p>                      
                 </div>
                 
                 <div id="mensaje2" class="mensaje-container">
@@ -258,9 +350,8 @@
                 </div>
                 
                 <div id="mensaje3" class="mensaje-container text-center">
-                    <p>♪· Nathalia, Tú amistad fue lo mejor que me pasó en estos años, fuiste la luz de mis ojos cuando me sumergí en una oscuridad y no veía con claridad, agradezco que seas alguien especial para mí, así como yo lo soy para tí, te deseo un hermoso cumpleaños en este día.
-                    </p>
-                    <p>ATT: Moltres</p>
+                    <p>♪· Nathalia, Tú amistad fue lo mejor que me pasó en estos años, fuiste la luz de mis ojos cuando me sumergí en una oscuridad y no veía con claridad, agradezco que seas alguien especial para mí, así como yo lo soy para tí, te deseo un hermoso cumpleaños en este día.</p>
+                    <p class="text-center mt-1"><small>ATT: Moltres</small></p>
 
                 </div>
                 <div id="mensaje4" class="mensaje-container text-center">
@@ -296,23 +387,23 @@
 
                 <div id="mensaje6" class="mensaje-container text-center">
                     <p>Es increíble como pasa el tiempo, ya es el segundo año que paso contigo en tu cumpleaños, ese hecho me llena de felicidad, agradezco haberte conocido, haber convivido, ser parte de tu círculo de amigos, sinceramente agradezco conocer a alguien tan especial como lo eres tú, puede que no tenga un regalo extravagante, es solo una pequeña dedicatoria hacia la persona que se merece el mundo entero.. La galaxia si es posible, una vez más, gracias por todo sayu, fuiste, eres y serás la persona más especial en mi vida; feliz súper cumpleaños 🐥🎉🎉🎉 te adoro demasiado</p>
-                    <P>Att: asly</P>
+                    <P class="text-center mt-1"><small>Att: asly</small></P>
                 </div>
 
                 <div id="mensaje7" class="mensaje-container text-center">
                     <p>Feliz cumpleañooooos. 🦔✨</p>
                     <p>es más que un día para celebrar tu nacimiento. Es una oportunidad para reconocer la persona en la que te has convertido, el camino que has recorrido, y todo lo que has superado para estar donde estás.</p>
-
-
                     <p>No todos los días se cumple un año más de vida, y por eso vale la pena detenerse un momento y agradecer por lo vivido, lo aprendido y lo que está por venir. Deseo de corazón que este nuevo ciclo te traiga paz interior, claridad en tus decisiones, y la fuerza para seguir avanzando hacia lo que deseas y mereces.</p>
 
                     <p>Así como alguien que me ha asistido, me ha aconsejado y sobre todo también me guío en ciertas etapas críticas en mi vida y agradezco mucho eso por haber estado ahí cuando lo necesite, yo valoro mucho lo que eres y todo lo que representas para mi, créeme que me gusta pasar tiempo contigo aunque sea poca las veces y en este día tan importante, solo puedo desearte lo mejor, con honestidad y respeto.</p>
 
-                    <p>Feliz cumpleaños madre mía, te quiere tu hija: Youmu 🎂</p>
-
+                    <p>Feliz cumpleaños madre mía.</p>
+                    
                     <div class="imagen-carta mt-3">
                         <img src="Youmu.png" alt="Mensaje visual" class="img-fluid rounded">
                     </div>
+
+                    <p class="text-center mt-1"><small>Te quiere tu hija: Youmu 🎂</small></p>
                 </div>
 
                 <div id="mensaje8" class="mensaje-container text-center">
@@ -320,7 +411,7 @@
                     <P>Cada vez es más difícil recordar cuando no nos hablábamos. Creo que muchas cosas mejoraron cuando terminé mi anterior relación y una de ellas fue la comunicación que nació entre nosotras, formamos una buena amistad que al día de hoy sigue siendo especial y te agradezco mucho por todo eso.</P>
                     <p>En estos meses hemos estado más ocupadas que antes y no hablamos tanto, estudiar me estresa mucho así que me he vuelto menos sociable. Espero que no pienses que no me gusta hablar contigo o algo así, son las cosas que a veces se juntan las que me vuelven distante pero yo te quiero mucho y te cuidaré de cualquier peligro que aceche</p>
                     <p>Deseo que tengas un feliz cumpleaños, sabes que el norte es nuestra familia y cuando sea el momento te convertirás en la mejor reina de todas pero para eso todavía debemos esperar un poco y darle vida al grupo que gobernarás. Me hace feliz que las cosas sean así, siempre confiaré en ti, eres mi amiga y mi hermana pequeña. Muchos abrazos para ti, mantengamos viva la racha. 🐇🔥</p>
-                    <p class="text-center mt-1"><small>Dulce</small></p>
+                    <p class="text-center mt-1"><small>Atentamente: Dulce</small></p>
                 </div>
 
                 <div id="mensaje9" class="mensaje-container text-center">
@@ -333,11 +424,27 @@
                 </div>
 
                 <div id="mensaje10" class="mensaje-container text-center">
-
+                    <p>Super Sayu, espero que te sientas bien al leer esto y que goces de la salud que mereces. Es uno de los días más especiales del año y también un momento para reflexionar sobre la vida.</p>
+                    <p>Cuatro años de conocerte y con seguridad hay muchas cosas que sigo sin saber de ti, lo cierto es que a partir de lo que conozco y de tu crecimiento año con año, puedo afirmar que eres una muchacha sincera y responsable. Aunque normalmente se espera que las personas cambien con el paso del tiempo, quiero que sigas conservando tus buenas cualidades más allá de las etapas que naturalmente te tocarán vivir</p>
+                    <p>Evidentemente cambiarás para adaptarte a la vida que te tocará enfrentar, pero no pierdas el enfoque y la humildad, que son cualidades importantes. De mientras, sé feliz sin hacer el mal, construye un camino que te haga sentir satisfecha y tranquila, es más que obvio que en el proceso de tu desarrollo contarás con la gente que te quiere y te apoya, así que no hay razones para sentir nervios, todo marchará bien y la felicidad que hoy recibas al sentir el cariño de tus seres queridos, recuérdala en los días en los que sientas que las cosas no avanzan, porque todo es un ciclo y lo que parece no tener solución, terminará resolviéndose muchas veces sin mayores consecuencias.</p>
+                    <p>Disfruta tus vacaciones y pórtate bien. Feliz día, pequeña hija. </p>
+                    <p class="text-center mt-1"><small>Atentamente: Yuno Grinberryall ✍️🥀</small></p>
                 </div>
 
                 <div id="mensaje11" class="mensaje-container text-center">
-                    <p></p>
+                    <p>Weno queria decirle que es una gran persona y gran amiga que la quiero.</p>
+                    <p class="text-center mt-1"><small>nIcKo</small></p>
+                </div>
+
+                <div id="mensaje12" class="mensaje-container text-center">
+                    <p>Hermanita, intentaré expresarme lo máximo posible.</p>
+                    <p>Nos conocimos hace unos años, de los cuales hablábamos muy poco al principio, así que mis mejores memorias desde que empezó nuestra amistad son desde hace dos y medio, aproximadamente. Siento que te he visto crecer y sé que seguirás haciéndolo. Serás más madura y deseo que tu forma de ser siga mejorando. Me haría muy feliz poder festejar tus próximos cumpleaños. También deseo apoyarte siempre que me necesites, yo y otras personas que estamos aquí vamos a cuidar de ti, protegerte. Debes guardar en tu mente o corazón todos los sentimientos que provocas en nosotros y fueron escritos en este lugar.</p>
+                    <p>Actualmente estoy orgulloso de quién eres, tu amabilidad, ternura e incluso tu pequeña toxicidad hacia tus seres queridos son razones por las que te aprecio más y como buen hermano mayor, disfruto cumplir parte de tus caprichos. Sabes que no siempre puedo hacerlo, y también sé que soy algo enojón los últimos meses… pero ten siempre presente que para mí eres de las personas más preciadas que he conocido. ¿Qué más puedo decirte? Creo que ya lo sabes, siempre puedes contar conmigo, gracias por seguir presente en nuestras vidas, eres una amiga magnífica que valoro tanto como puedo. Quiero que en tu día especial tengas… las uñas bien arregladas. 💅🏻 
+                      Una sonrisa increíble, mucha felicidad y la compartas con quienes te rodean, recibas abrazos y tanto afecto que pensarás que es difícil de soportar, tanto que te sentiras mal por los demás. No olvides tampoco consentir a Dacota y Summer, ¡Compárteles un poco de toda la alegría y amor que tienes!
+                    </p>
+                    <p>¡Feliz cumpleaños! A ti, que eres de las mejores personas que hay en el norte, un año más hacia la vejez. Espero que recuerdes esto cuando tengas canas y también cuando estés triste, puedes leer esto y darte ánimos con las palabras de quienes te queremos. Tengo los mejores deseos… y sin más que agregar, rezaré para que nuestro regalo sea de tu agrado.</p>
+                    <p class="text-center mt-1"><small>De parte de: ¡Todos! Porque te queremos.</small></p>
+                    <p class="text-center mt-1"><small>(Y un tal "Kyouma")</small></p>
                 </div>
             </div>
         </div>
@@ -345,16 +452,41 @@
         <!-- Sección de galería -->
         <div class="seccion text-center">
             <h3>Nuestros momentos</h3>
-            <p>Algunos recuerdos especiales contigo:</p>
+            <p>Haz clic en las imágenes para verlas más grandes:</p>
             
             <div class="galeria">
-                <!-- Imágenes de ejemplo - puedes reemplazarlas -->
-                <img src="Remind-D.jpeg" alt="Foto 1">
-                <img src="Remind-a.jpg" alt="Foto 2">
-                <img src="RemindYoumu.jpeg" alt="Foto 3">
-                <img src="https://via.placeholder.com/100.png?text=Foto+4" alt="Foto 4">
-                <img src="https://via.placeholder.com/100.png?text=Foto+5" alt="Foto 5">
-                <img src="https://via.placeholder.com/100.png?text=Foto+6" alt="Foto 6">
+                <!-- Imágenes con texto descriptivo -->
+                <img src="Remind-D.jpeg" 
+                    onclick="mostrarImagen('Remind-D.jpeg',  'Un momento muy especial juntas.')">
+                    
+                <img src="Remind-a.jpg" 
+                    onclick="mostrarImagen('Remind-a.jpg', 'Recuerdo ese momento por que, ella se tomó el tiempo de dedicarme esas palabras, a pesar de que no conviviamos demasiado, me hizo sentir tan especial que aunque haya sido hace bastante tiempo que me dedico eso, aun en mi memoria vive el día en que me lo hizo llegar, genuinamente me hizo feliz y siempre lo mantengo en mi corazón.')">
+                    
+                <img src="RemindYoumu.jpeg" 
+                    onclick="mostrarImagen('RemindYoumu.jpeg', 'Lo que más me hace recordarla, es esta imagen, por el día de mi cumpleaños y fue un momento especial que aún recuerdo que pasamos juntas.')">
+                <img src="RemindY.jpeg" 
+                    onclick="mostrarImagen('RemindY.jpeg', '...')">
+                <img src="Remind-K.jpg" 
+                    onclick="mostrarImagen('Remind-K.jpg', 'No quiero hacerte sentir triste... y sé que hemos compartido imagenes en momentos mejores. Pero esta imagen ha venido a mi mente las últimas semanas, a pesar de lo que sucedió, me alegro recordando esta imagen, porque me recuerda a tí.')">
+            </div>
+        </div>
+
+        <div class="seccion text-center">
+            <div class="galeria">
+                    <img src="Honorífica.jpg" 
+                        onclick="mostrarImagen('Honorífica.jpg', 'Mírala, ¡Es una ternura!')">
+            </div> 
+             <p class="text-center mt-1"><small>Mención honorífica a Asly hablando lindo de Sayu</small></p>
+        </div>       
+
+        <!-- Modal para imagen expandida -->
+        <div id="modalGaleria" class="modal-galeria">
+            <div class="modal-contenido">
+                <span class="cerrar-modal" onclick="cerrarModal()">&times;</span>
+                <div class="contenedor-imagen-texto" class="d-block mx-auto">
+                    <img id="imagenExpandida" class="imagen-expandida" src="" >
+                    <div id="textoImagen" class="texto-imagen"></div>
+                </div>
             </div>
         </div>
         
@@ -364,17 +496,15 @@
             <p>Esperamos que este nuevo año de vida esté lleno de alegría, amor y muchas bendiciones.</p>
             
             <div class="imagen-container">
-                <!-- Imagen de ejemplo - puedes reemplazarla con un chibi o perro -->
                 <img src="chibi-anime-boy.gif" alt="Imagen tierna" class="img-fluid">
             </div>
             
             <button class="btn-morado" onclick="animacionConfeti()">
-                <i class="fas fa-birthday-cake"></i> ¡Celebremos!
+                <i class="fas fa-birthday-cake"></i> ¡Celebremos! 🎉
             </button>
         </div>
     </div>
     
-    <!-- Decoraciones de perros (puedes reemplazar con tus imágenes) -->
     <img src="FOTO1.png" class="decoracion-perro perro1" alt="Perro decorativo">
     <img src="love-hit.gif" class="decoracion-perro perro2" alt="Perro decorativo">
     
@@ -402,15 +532,115 @@
         }
         
         // Función para animación de confeti (simplificada)
-        function animacionConfeti() {
-            alert("¡Feliz Cumpleaños. Te queremos demasiado, gracias por estar en nuestras vidas!");
-            // En una versión más avanzada podrías agregar una librería de confeti real
+       function animacionConfeti() {
+            // Configuración básica
+            const count = 200;
+            const defaults = {
+                origin: { y: 0.7 },
+                spread: 60,
+                ticks: 100,
+                gravity: 0.5,
+                decay: 0.94,
+                startVelocity: 25,
+                colors: ['#9c27b0', '#673ab7', '#3f51b5', '#2196f3']
+            };
+
+            // Disparo central
+            confetti({
+                ...defaults,
+                particleCount: Math.floor(count * 0.25),
+                scalar: 1.2,
+                shapes: ['circle', 'square']
+            });
+
+            // Disparos laterales
+            confetti({
+                ...defaults,
+                particleCount: Math.floor(count * 0.2),
+                angle: 60,
+                spread: 80,
+                origin: { x: 0 }
+            });
+
+            confetti({
+                ...defaults,
+                particleCount: Math.floor(count * 0.2),
+                angle: 120,
+                spread: 80,
+                origin: { x: 1 }
+            });
+
+            // Confeti especial (más grande)
+            setTimeout(() => {
+                confetti({
+                    ...defaults,
+                    particleCount: Math.floor(count * 0.1),
+                    scalar: 2,
+                    shapes: ['circle'],
+                    colors: ['#ff69b4', '#9c27b0', '#673ab7']
+                });
+            }, 250);
+
+            // Confeti de estrellas
+            setTimeout(() => {
+                confetti({
+                    ...defaults,
+                    particleCount: Math.floor(count * 0.25),
+                    scalar: 1.5,
+                    shapes: ['star'],
+                    colors: ['#ffff00', '#ffffff']
+                });
+            }, 400);
+
+            // Duración total: ~3 segundos
         }
-        
+                
         // Inicialización
         document.addEventListener('DOMContentLoaded', function() {
-            // Puedes agregar más inicializaciones aquí si es necesario
         });
+       function mostrarImagen(src, texto) {
+            const modal = document.getElementById('modalGaleria');
+            const imagen = document.getElementById('imagenExpandida');
+            const textoElement = document.getElementById('textoImagen');
+            
+            const img = new Image();
+            img.onload = function() {
+                imagen.src = src;
+                textoElement.innerHTML = texto.replace(/\n/g, '<br>');
+                
+                // Ajustar tamaño según orientación de la imagen
+                if (img.width > img.height) {
+                    // Imagen horizontal
+                    imagen.style.maxWidth = '80vw';
+                    imagen.style.maxHeight = '60vh';
+                } else {
+                    // Imagen vertical
+                    imagen.style.maxWidth = '60vw';
+                    imagen.style.maxHeight = '70vh';
+                }
+                
+                modal.style.display = 'flex'; 
+                document.body.style.overflow = 'hidden';
+            };
+            img.src = src;
+        }
+
+        // Función para cerrar el modal
+        function cerrarModal() {
+            const modal = document.getElementById('modalGaleria');
+            modal.style.display = 'none';
+            
+            // Habilitar scroll del body nuevamente
+            document.body.style.overflow = 'auto';
+        }
+
+        // Cerrar modal al hacer clic fuera de la imagen
+        window.onclick = function(event) {
+            const modal = document.getElementById('modalGaleria');
+            if (event.target == modal) {
+                cerrarModal();
+            }
+        }
     </script>
 </body>
 </html>
